@@ -1,7 +1,7 @@
 // Variables =======================
 
     //word bank
-    var wordBank = ["adventure", "ariplane", "anarctica", "asia", "cruise", "customs", 
+    var wordBank = ["adventure", "airplane", "anarctica", "asia", "cruise", "customs", 
         "europe", "hotel", "photography", "souvenir", "state", "suitcase"];
 
     var indexPointer = Math.floor(Math.random() * wordBank.length);
@@ -14,9 +14,17 @@
 
     var lettersUsed = [];
 
-    var blankDisplay = "";
+    var blankDisplay = [];
+    
+    var wordsUsed = [];
 
     var userGuess = "";
+
+    var txt = "";
+
+    var guessCounter = 8;
+
+    var guessed = false;
     
     console.log(wordBank);
     console.log(indexPointer);
@@ -25,40 +33,60 @@
 
 // Fuctions ========================
 
-    String.prototype.replaceAt = function(index, replacement) {
-        return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-    }
 
 // Main Process ====================
 
+console.log("guesses left: " + guessCounter);
+
     for (var i = 0; i<wordLength; i++){
-        var blankDisplay = blankDisplay + "__ "
+        blankDisplay.push("__");
+    }
+    for (var i = 0; i<blankDisplay.length; i++){
+        txt += blankDisplay[i] + " ";
     }
 
-    console.log(blankDisplay);
+    wordsUsed.push(word);
+    console.log(wordsUsed);
 
+    console.log(blankDisplay);
+    console.log(txt);
+
+    document.getElementById("wordDisplay").innerHTML = txt;
+
+    //the user presses a key to start the game. the letter they pressed is stored in variable userGuess
     document.onkeyup = function(event){
         var userGuess = event.key;
-        console.log(userGuess);
-
+        console.log("current userGuess is " + userGuess);
+    
+        //loop through every character in the word to see if the userGuess matches
         for (var c = 0; c<wordLength; c++){
             var letter = word.charAt(c);
-            console.log(letter);
             
+            //if statement determines if the guess was correct
             if (letter === userGuess){
                 console.log(letter);
-                
+
+                //replaces any correct guesses witht the "__" in the diaplay array
                 for (b = 0; b<wordLength; b++){
-                    var changeStart = c * 3;
-                    console.log(changeStart);
-
-                    // blankDisplay.replaceAt(changeStart, letter + " ");
-                    // console.log(blankDisplay);
-
+                    var changeIndex = c;
+                    blankDisplay[c] = letter;
                 }
-
-            }
-
+            } 
+        
         }
-    
+
+        txt = "";
+
+        //re-builds the display string with any correct guesses added
+        for (var i = 0; i<blankDisplay.length; i++){
+            txt += blankDisplay[i] + " ";
+        }
+
+        //userGuess is added to the lettersUsed array to remind user what they've already guessed
+        lettersUsed.push(userGuess);
+        console.log(lettersUsed);
+
+        document.getElementById("wordDisplay").innerHTML = txt;
+        document.getElementById("guessDiv").innerHTML = "<p> you guessed letter " + userGuess + "</p>";
+        document.getElementById("guessedLetters").innerHTML =  lettersUsed;
     };
