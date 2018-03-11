@@ -25,6 +25,8 @@
     var guessCounter = 8;
 
     var guessed = false;
+
+    var losses = 0;
     
     console.log(wordBank);
     console.log(indexPointer);
@@ -38,26 +40,34 @@
 
 console.log("guesses left: " + guessCounter);
 
-    for (var i = 0; i<wordLength; i++){
-        blankDisplay.push("__");
+for (var i = 0; i<wordLength; i++){
+    blankDisplay.push("__");
+}
+for (var i = 0; i<blankDisplay.length; i++){
+    txt += blankDisplay[i] + " ";
+}
+
+wordsUsed.push(word);
+console.log(wordsUsed);
+
+console.log(blankDisplay);
+console.log(txt);
+
+document.getElementById("wordDisplay").innerHTML = txt;
+
+//the user presses a key to start the game. the letter pressed is stored in variable userGuess
+document.onkeyup = function(event){
+    var userGuess = event.key;
+    console.log("current userGuess is " + userGuess);
+    console.log(guessCounter + " guesses left before the loop");
+
+    if (guessCounter = 0){
+        alert("You've run out of guesses. The correct answer was " + word);
+        losses++;
     }
-    for (var i = 0; i<blankDisplay.length; i++){
-        txt += blankDisplay[i] + " ";
-    }
+    else{
+        console.log(guessCounter + " guesses after the loop");
 
-    wordsUsed.push(word);
-    console.log(wordsUsed);
-
-    console.log(blankDisplay);
-    console.log(txt);
-
-    document.getElementById("wordDisplay").innerHTML = txt;
-
-    //the user presses a key to start the game. the letter they pressed is stored in variable userGuess
-    document.onkeyup = function(event){
-        var userGuess = event.key;
-        console.log("current userGuess is " + userGuess);
-    
         //loop through every character in the word to see if the userGuess matches
         for (var c = 0; c<wordLength; c++){
             var letter = word.charAt(c);
@@ -72,7 +82,6 @@ console.log("guesses left: " + guessCounter);
                     blankDisplay[c] = letter;
                 }
             } 
-        
         }
 
         txt = "";
@@ -89,4 +98,8 @@ console.log("guesses left: " + guessCounter);
         document.getElementById("wordDisplay").innerHTML = txt;
         document.getElementById("guessDiv").innerHTML = "<p> you guessed letter " + userGuess + "</p>";
         document.getElementById("guessedLetters").innerHTML =  lettersUsed;
-    };
+
+        guessCounter--;
+        console.log("guesses left at end of key function: " + guessCounter);
+    }
+};
