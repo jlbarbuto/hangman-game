@@ -4,33 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <title>Hangman Game</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
     <div class="container">
-        <!-- <img class="backdrop" src="assets/images/world-map.jpg"> -->
-        <h1>Let's Play Hangman!</h1>
-        <br>
-        <h2>Try and guess words related to travel and vacation.</h2>
+        <div class="row heading">
+            <div class="col-md-2">
+                <br>
+            </div>
+            <div class="col-md-8">
+                <h1 class="title">Let's Play Hangman!</h1>
+            </div>
+            <div class="col-md-2">
+                <br>
+            </div>
+        </div>
 
-        <div id="wordDisplay"></div>
-        <br>
-        <div id="guessDiv"></div>
+        <div class="row">
+            <div class="col-md-3 col-sm-3">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="label" id="wins">Wins:</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="label" id="losses">Losses:</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="label" id="guessesLeft">Guesses:</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-9">
+                <div class="label" id="directions">Try and guess words related to travel and vacation.
+                    <br>
+                    <span>Once you've pressed all the correct letters, you win! Press too many wrong letters (8) and you lose.</span></div>
+                <br>
+                <div class="label" id="guessDiv">Press any letter to being.</div>
+            </div>
+        </div>
 
-        <br>
-        
-        <h2>Letters Guessed:</h2>
-        <div id="guessedLetters"></div>
+        <div class="row theWord">
+            <div class="col-md-12">
+                <br>
+                <div class="words" id="wordDisplay"></div>
+                <br>
+            </div>
+        </div>
 
-        <br>
-
-        <h2>Losses:</h2>
-        <div id="losses"></div>
-        <br>
-        <h2>Wins:</h2>
-        <div id="wins"></div>
+        <div class="row">
+            <div class="col-md-4 col-sm-5 col-xs-6">
+                <img id="world-map" src="assets/images/world-map-vintage.jpg" alt="world map image" width="200px">
+            </div>
+            <div class="col-md-8 col-sm-7 col-xs-6">
+                <div class="row">
+                    <div class="label">Letters Guessed:</div>
+                </div>
+                <div class="row">
+                    <div class="words" id="guessedLetters"></div>
+                </div>
+            </div>
+        </div>
 
         <script src="assets/javascript/game.js"></script>
 

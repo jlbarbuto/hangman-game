@@ -1,11 +1,55 @@
 *{
     box-sizing: border-box;
+    
 }
 
 body{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     color: #666;
-    background-color: #ffffff;
-    
+    background-color: cadetblue;
+    text-align: center;
+}
+
+h1{
+    color: cornsilk;
+    font-family: 'Amatic SC', sans-serif;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    font-size: 70px;
+}
+
+.label{
+    background-color: cornsilk;
+    border: 2px solid #666;
+    padding: 15px;
+}
+
+span{
+    font-size: 16px;
+    text-align: left;
+}
+
+.words{
+    color: cornsilk;
+}
+
+#wins, #directions, #losses, #guessesLeft{
+    margin-top: 15px;
+}
+
+#guessedLetters{
+    margin-top: 15px;
+    font-size: 36px;
+}
+
+.theWord{
+    border: 2px solid cornsilk;
+    margin: 20px;
+
+}
+
+.world-map{
+    border: 2px solid cornsilk;
 }
