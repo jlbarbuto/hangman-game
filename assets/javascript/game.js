@@ -2,17 +2,14 @@
 
     //word bank
     var wordBank = ["adventure", "africa", "airplane", "anarctica", "asia", "cruise", "customs", 
-        "europe", "highway", "hotel", "memories", "ocean", "photography", "pilgrimage", "sightseeing",
-        "souvenir", "state", "suitcase", "tourist", "wanderlust"];
+        "europe", "exploration", "highway", "hotel", "journey", "memories", "ocean", "photography",
+        "pilgrimage", "sightseeing", "souvenir", "state", "suitcase", "tourist", "voyage", "wanderlust"];
 
     var indexPointer = Math.floor(Math.random() * wordBank.length);
 
     var word = wordBank[indexPointer];
     
     var wordLength = word.length;
-
-    // var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-    //                 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     
     var lettersUsed = [];
 

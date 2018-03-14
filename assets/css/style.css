@@ -50,6 +50,11 @@ span{
 
 }
 
-.world-map{
-    border: 2px solid cornsilk;
+#world-map, #camera{
+    border: 2px solid #666;
+}
+
+#compass, #suitcase{
+    margin-top: 15px;
+    border: 3zpx solid cornsilk;
 }
