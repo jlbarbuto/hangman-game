@@ -5,6 +5,8 @@
         "europe", "exploration", "highway", "hotel", "journey", "memories", "ocean", "photography",
         "pilgrimage", "sightseeing", "souvenir", "state", "suitcase", "tourist", "voyage", "wanderlust"];
 
+    var alphaArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", ];
+
     var indexPointer = Math.floor(Math.random() * wordBank.length);
 
     var word = wordBank[indexPointer];
@@ -86,56 +88,67 @@ document.onkeyup = function(event){
 
         //user makes a guess
         else{
-            //loop through every character in the word to see if the userGuess matches
-            for (var c = 0; c<wordLength; c++){
-                var letter = word.charAt(c);
-                
-                //if statement determines if the guess was correct
-                if (letter === userGuess){
-                    console.log(letter);
 
-                    //replaces any correct guesses witht the "__" in the diaplay array
-                    for (b = 0; b<wordLength; b++){
-                        var changeIndex = c;
-                        blankDisplay[c] = letter;
+            var found = 0
+            for (var i=0;i<lettersUsed.length;i++){
+                if (userGuess===lettersUsed[i]){
+                    found++;
+                }
+            }
+
+            if(found===0){
+                //loop through every character in the word to see if the userGuess matches
+                for (var c = 0; c<wordLength; c++){
+                    var letter = word.charAt(c);
+                    
+                    //if statement determines if the guess was correct
+                    if (letter === userGuess){
+                        console.log(letter);
+
+                        //replaces any correct guesses witht the "__" in the diaplay array
+                        for (b = 0; b<wordLength; b++){
+                            var changeIndex = c;
+                            blankDisplay[c] = letter;
+                        }
+                        guess++;
                     }
-                    guess++;
                 }
-            }
 
-            txt = "";
+                txt = "";
 
-            //re-builds the display string with any correct guesses added
-            for (var i = 0; i<blankDisplay.length; i++){
-                txt += blankDisplay[i] + " ";
-            }
-
-            //userGuess is added to the lettersUsed array to remind user what they've already guessed
-            lettersUsed.push(userGuess);
-            document.getElementById("wordDisplay").textContent = txt;
-            document.getElementById("guessDiv").textContent = "You guessed letter: " + userGuess;
-
-            lettersTxt = lettersUsed + ",";
-            lettersTxt = lettersTxt.replace(/,/g," ");
-            document.getElementById("guessedLetters").textContent =  lettersTxt;
-
-            
-
-            //check for a win, else user looses a guess
-            if (guess>=1){
-                txt = txt.replace(/\s/g,"");
-                if (txt === word){
-                    wins++;
-                    document.getElementById("wins").textContent = "Wins: " + wins;
-                    alert("You won!! You guessed " + word + "!");
-                    reset();
+                //re-builds the display string with any correct guesses added
+                for (var i = 0; i<blankDisplay.length; i++){
+                    txt += blankDisplay[i] + " ";
                 }
+
+                //userGuess is added to the lettersUsed array to remind user what they've already guessed
+                lettersUsed.push(userGuess);
+                document.getElementById("wordDisplay").textContent = txt;
+                document.getElementById("guessDiv").textContent = "You guessed letter: " + userGuess;
+
+                lettersTxt = lettersUsed + ",";
+                lettersTxt = lettersTxt.replace(/,/g," ");
+                document.getElementById("guessedLetters").textContent =  lettersTxt;
+
+                
+
+                //check for a win, else user looses a guess
+                if (guess>=1){
+                    txt = txt.replace(/\s/g,"");
+                    if (txt === word){
+                        wins++;
+                        document.getElementById("wins").textContent = "Wins: " + wins;
+                        alert("You won!! You guessed " + word + "!");
+                        reset();
+                    }
+                }
+                else{
+                    guessCounter--;
+                    document.getElementById("guessesLeft").textContent = "Guesses: " + guessCounter;
+                }
+                guess = 0;
             }
-            else{
-                guessCounter--;
-                document.getElementById("guessesLeft").textContent = "Guesses: " + guessCounter;
-            }
-            guess = 0;
+           
         }
     }
 };
